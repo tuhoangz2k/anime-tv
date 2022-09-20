@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AiOutlineMenu, AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineMenu, AiOutlineSearch, AiOutlineClose } from 'react-icons/ai';
 import Logo from '../assets/img/logoz.png';
 import NavBar from './NavBar';
 
@@ -52,13 +52,20 @@ function Header(props) {
                         placeholder="Search"
                     />
                 </div>
-                <AiOutlineMenu
-                    onClick={handleShowNav}
-                    fontSize={35}
-                    className="ml-[10px] bg-primary text-white rounded-sm lg:hidden"
-                />
-                {showNav && isMobile && <NavBar isMobile={isMobile} onShowNav={setShowNav} />}
-                {!isMobile && <NavBar className="hidden lg:block" isMobile={isMobile} />}
+                <div onClick={handleShowNav} className="relative z-10">
+                    {showNav ? (
+                        <AiOutlineClose
+                            fontSize={35}
+                            className="ml-[10px] bg-primary text-white rounded-sm lg:hidden"
+                        />
+                    ) : (
+                        <AiOutlineMenu
+                            fontSize={35}
+                            className="ml-[10px] bg-primary text-white rounded-sm lg:hidden"
+                        />
+                    )}
+                </div>
+                <NavBar isMobile={isMobile} showNav={showNav} onShowNav={setShowNav} />
             </div>
         </header>
     );
