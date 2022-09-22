@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { AiOutlineMenu, AiOutlineSearch, AiOutlineClose } from 'react-icons/ai';
 import Logo from '../assets/img/logoz.png';
 import NavBar from './NavBar';
+import animeApi from '../api/animesApi';
 
 function Header(props) {
     const [showNav, setShowNav] = useState(false);
+    const [genres, setGenres] = useState([]);
     const handleShowNav = () => {
         setShowNav(!showNav);
     };
@@ -36,6 +38,14 @@ function Header(props) {
         }
     }, [windowSize]);
 
+    useEffect(() => {
+        const getGenres = async () => {
+            const res = await animeApi.getAllGenres();
+            setGenres(res.data.data);
+        };
+        getGenres();
+    }, []);
+
     return (
         <header className="h-[65px] bg-[#263238]">
             <div className="h-full py-[15px] flex items-center justify-between px-[20px]">
@@ -65,7 +75,12 @@ function Header(props) {
                         />
                     )}
                 </div>
-                <NavBar isMobile={isMobile} showNav={showNav} onShowNav={setShowNav} />
+                <NavBar
+                    isMobile={isMobile}
+                    showNav={showNav}
+                    genres={genres}
+                    onShowNav={setShowNav}
+                />
             </div>
         </header>
     );

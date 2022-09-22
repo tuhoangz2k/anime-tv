@@ -1,11 +1,14 @@
-import axiosClient from "./axiosClient";
+import axiosClient from './axiosClient';
 
-const animeApi={
+const animeApi = {
+    getTop(params) {
+        const url = 'top/anime';
+        return axiosClient.get(url, { params });
+    },
+    getAllGenres() {
+        const url = 'genres/anime';
+        return axiosClient.get(url);
+    },
+};
 
-    getTop(params){
-        const url = 'top/anime'
-        return axiosClient.get(url,{params})
-    }
-}
-
-export default animeApi
+export default animeApi;
