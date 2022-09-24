@@ -1,13 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
 import Button from './Button';
 import NavBarItem from './NavBarItem';
-function NavBar({ isMobile, onShowNav, showNav, genres }) {
+import animeApi from '../api/animesApi';
+import seasonsApi from '../api/seasonsApi';
+import SeasonList from './SeasonList';
+function NavBar({ isMobile, onShowNav, showNav }) {
+    const [genres, setGenres] = useState([]);
+    const [seasons, setSeasons] = useState([]);
     const handleToggleNav = (e) => {
         if (onShowNav && isMobile && e.currentTarget === e.target) {
             onShowNav((prev) => !prev);
         }
     };
+
+    useEffect(() => {
+        const getGenres = async () => {
+            const res = await animeApi.getAllGenres();
+            setGenres(res.data.data);
+        };
+        getGenres();
+    }, []);
+    useEffect(() => {
+        const getSeasons = async () => {
+            const res = await seasonsApi.getSeasonList();
+            setSeasons(res.data.data);
+        };
+        getSeasons();
+    }, []);
+    console.log(seasons);
     return (
         <>
             {isMobile ? (
@@ -36,7 +57,7 @@ function NavBar({ isMobile, onShowNav, showNav, genres }) {
                         <ul>
                             <NavBarItem text="Home" to="/" />
                             <NavBarItem text="Top" to="/top" />
-                            <NavBarItem text="Season" to="/season" />
+                            <SeasonList text="Season" data={seasons} />
                             <NavBarItem text="Genres" data={genres} />
                         </ul>
                     </nav>
@@ -46,7 +67,7 @@ function NavBar({ isMobile, onShowNav, showNav, genres }) {
                     <ul className="flex">
                         <NavBarItem text="Home" to="/" />
                         <NavBarItem text="Top" to="/top" />
-                        <NavBarItem text="Season" to="/season" />
+                        <SeasonList text="Season" data={seasons} />
                         <NavBarItem text="Genres" data={genres} />
                     </ul>
                     <div>
@@ -63,4 +84,4 @@ function NavBar({ isMobile, onShowNav, showNav, genres }) {
     );
 }
 
-export default NavBar;
+export default memo(NavBar);
