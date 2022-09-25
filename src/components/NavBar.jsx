@@ -16,8 +16,12 @@ function NavBar({ isMobile, onShowNav, showNav }) {
 
     useEffect(() => {
         const getGenres = async () => {
-            const res = await animeApi.getAllGenres();
-            setGenres(res.data.data);
+            try {
+                const res = await animeApi.getAllGenres();
+                setGenres(res.data.data);
+            } catch (error) {
+                console.log(error);
+            }
         };
         getGenres();
     }, []);
@@ -28,7 +32,6 @@ function NavBar({ isMobile, onShowNav, showNav }) {
         };
         getSeasons();
     }, []);
-    console.log(seasons);
     return (
         <>
             {isMobile ? (
@@ -45,10 +48,10 @@ function NavBar({ isMobile, onShowNav, showNav }) {
                             showNav ? 'left-0 opacity-100' : 'left-[-100%] opacity-0'
                         } transition-all top-0 bottom-0 w-[290px] bg-[#263238] opacity-90 overflow-y-scroll`}
                     >
-                        <div className="py-4 px-2 bg-[#090b0c] mt-4 relative opacity-100">
+                        <div className="py-4 px-2 bg-[#090b0c] mt-4 w-[90%] mx-auto relative opacity-100">
                             <Button
                                 to="/login"
-                                className="bg-primary w-[200px] rounded-sm text-white flex items-center justify-center mx-auto h-[40px]"
+                                className="bg-primary w-[200px]  rounded-sm text-white flex items-center justify-center mx-auto h-[40px]"
                             >
                                 Login
                             </Button>

@@ -8,7 +8,7 @@ function NavBarItem({ to, data, text }) {
                 <li className="group lg:relative cursor-pointer">
                     <div className="flex items-center justify-between">
                         <span className="block text-white px-4 py-2">{text}</span>
-                        <BiChevronDown size={30} className="mr-8 text-green-500" />
+                        <BiChevronDown size={30} className="lg:mr-0 mr-8 text-green-500" />
                     </div>
                     <ul
                         className="flex-wrap hidden group-hover:flex lg:absolute lg:top-full lg:right-0 lg:w-[300px] 
@@ -20,7 +20,7 @@ function NavBarItem({ to, data, text }) {
                             const seasons = item?.seasons.map((season) => (
                                 <li
                                     key={`${item?.year}-${season}`}
-                                    className="flex flex-wrap w-[50%] text-ellipsis overflow-hidden text-sm py-3 pl-1"
+                                    className="flex flex-wrap w-[50%] hover:text-red-500 font-semibold text-ellipsis overflow-hidden text-sm py-3 pl-1"
                                 >
                                     <Link
                                         to={`/seasons/${item?.year}/${season}`}
@@ -46,4 +46,4 @@ function NavBarItem({ to, data, text }) {
     );
 }
 
-export default NavBarItem;
+export default React.memo(NavBarItem);
