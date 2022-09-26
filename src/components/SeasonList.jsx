@@ -13,7 +13,7 @@ function NavBarItem({ to, data, text }) {
                     <ul
                         className="flex-wrap hidden group-hover:flex lg:absolute lg:top-full lg:right-0 lg:w-[300px] 
                     lg:scrollbar-hide lg:h-[500px] lg:overflow-y-scroll lg:bg-white lg:border-t-[4px] lg:border-[#b5e745]
-                    before:content-['']
+                    before:content-[''] z-10
                     "
                     >
                         {data?.map((item, idx) => {

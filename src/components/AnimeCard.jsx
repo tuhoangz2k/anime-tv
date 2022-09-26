@@ -1,9 +1,9 @@
 import React from 'react';
-
+import { AiFillStar } from 'react-icons/ai';
 function AnimeCard({ anime }) {
     console.log(anime?.jpg?.images?.image_url);
     return (
-        <div className="text-center">
+        <div className="text-center relative">
             <div>
                 <img
                     src={anime?.images?.jpg?.image_url}
@@ -15,6 +15,15 @@ function AnimeCard({ anime }) {
                 {anime?.title_english}
             </h4>
             <p className="">View: {anime?.members}</p>
+            <span className="absolute top-1 left-1 flex bg-[#000000a6] text-[14px] gap-[2px] items-center text-[#f5ec42] w-[60px] px-[6px] py-[6px] rounded-[20px] font-bold">
+                {anime.score} <AiFillStar />
+            </span>
+            <span
+                className="absolute top-[6px] right-[6px] w-[40px] h-[40px]
+             bg-[#b71c1ce6] rounded-[50%] flex items-center justify-center flex-wrap text-white font-semibold"
+            >
+                {anime.episodes}
+            </span>
         </div>
     );
 }

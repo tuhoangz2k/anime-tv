@@ -39,14 +39,14 @@ function NavBar({ isMobile, onShowNav, showNav }) {
                     <div
                         className={`fixed w-full ${
                             showNav ? ' block' : 'hidden'
-                        } transition-all left-0 top-0 bottom-0 bg bg-[#00000099]`}
+                        } transition-all left-0 top-0 bottom-0 bg bg-[#00000099] z-[5]`}
                         onClick={handleToggleNav}
                     ></div>
 
                     <nav
                         className={`absolute ${
                             showNav ? 'left-0 opacity-100' : 'left-[-100%] opacity-0'
-                        } transition-all top-0 bottom-0 w-[290px] bg-[#263238] opacity-90 overflow-y-scroll`}
+                        } transition-all top-0 bottom-0 w-[290px] bg-[#263238] opacity-90 overflow-y-scroll z-10`}
                     >
                         <div className="py-4 px-2 bg-[#090b0c] mt-4 w-[90%] mx-auto relative opacity-100">
                             <Button

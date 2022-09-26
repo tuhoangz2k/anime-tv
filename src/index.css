@@ -13,5 +13,7 @@
 @layer components {
     .header-title {
         background: linear-gradient(81.43deg, #b71c1c -26.81%, #8e1438 87.89%);
+        width: calc(100% + 1.5rem);
+        @apply relative left-[-0.75rem] z-[1] mb-8 top-0;
     }
 }

@@ -5,7 +5,7 @@ function NavBarItem({ to, data, text }) {
     return (
         <>
             {data ? (
-                <li className="group lg:relative cursor-pointer relative">
+                <li className="group cursor-pointer relative">
                     <div className="flex items-center justify-between">
                         <span className="block text-white px-4 py-2">{text}</span>
                         <BiChevronDown size={30} className="lg:mr-0 mr-8 text-green-500" />
@@ -13,7 +13,7 @@ function NavBarItem({ to, data, text }) {
                     <ul
                         className="flex-wrap hidden group-hover:flex lg:absolute lg:top-full lg:right-0 lg:w-[300px] 
                     lg:scrollbar-hide lg:h-[500px] lg:overflow-y-scroll lg:bg-white lg:border-t-[4px] lg:border-[#b5e745]
-                    before:content-[''] absolute top-full left-0 translate-x-[-10%]
+                    before:content-[''] absolute top-full left-0 z-10 w-full right-0
                     "
                     >
                         {data?.map((item, index) => (

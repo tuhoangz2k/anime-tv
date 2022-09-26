@@ -4,10 +4,8 @@ import AnimeCard from './AnimeCard';
 function AnimeSection({ data }) {
     return (
         <section className="">
-            <h3 className="header-title relative left-[-0.75rem] mb-8 top-0 w-[100vw] text-xl text-white text-center py-2">
-                Season
-            </h3>
-            <div className="grid grid-cols-2 gap-5">
+            <h3 className="header-title text-xl text-white text-center py-2">Season</h3>
+            <div className="grid grid-cols-2 gap-5 md:grid-cols-4 lg:grid-cols-5">
                 {data?.map((anime) => (
                     <AnimeCard key={anime.mal_id} anime={anime} />
                 ))}
