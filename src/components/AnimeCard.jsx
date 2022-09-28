@@ -1,9 +1,8 @@
 import React from 'react';
 import { AiFillStar } from 'react-icons/ai';
 function AnimeCard({ anime }) {
-    console.log(anime?.jpg?.images?.image_url);
     return (
-        <div className="text-center relative">
+        <div className="text-center relative cursor-pointer">
             <div>
                 <img
                     src={anime?.images?.jpg?.image_url}
