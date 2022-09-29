@@ -13,6 +13,10 @@ const animeApi = {
         const url = `seasons/${year}/${season}`;
         return axiosClient.get(url, { params });
     },
+    getSeasonNow(params) {
+        const url = 'seasons/now';
+        return axiosClient.get(url, { params });
+    },
 };
 
 export default animeApi;

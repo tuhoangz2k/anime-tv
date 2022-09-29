@@ -38,7 +38,7 @@ function Header(props) {
 
     return (
         <header className="h-[65px] bg-[#263238]">
-            <div className="h-full py-[15px] flex items-center justify-between px-[20px]">
+            <div className="h-full py-[15px] flex items-center justify-between px-[20px] lg:max-w-6xl mx-auto">
                 <Link to="/" className="h-full">
                     <img src={Logo} alt="" className="h-full" />
                 </Link>
