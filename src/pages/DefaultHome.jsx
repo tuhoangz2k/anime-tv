@@ -13,10 +13,11 @@ function DefaultHome() {
     const [rankingAnime, setRankingAnime] = useState([]);
     const [filter, setFilter] = useState({ type: 'tv', limit: 10 });
     const slidesAnime = [...seasonAnime].slice(0, 10);
+    console.log(seasonAnime);
     useEffect(() => {
         (async () => {
             try {
-                const res = await seasons.getSeasonNow({ limit: 20 });
+                const res = await seasons.getSeasonNow({ limit: 60 });
                 setSeasonAnime(res.data.data);
             } catch (error) {
                 console.log(error);
@@ -34,11 +35,12 @@ function DefaultHome() {
             }
         })();
     }, [filter]);
+
     const handleChangeRanking = useCallback((newType) => {
         setFilter({ ...filter, type: newType });
     }, []);
     return (
-        <div>
+        <div className="px-4">
             <div className="block mx-auto lg:max-w-6xl">
                 <Swiper
                     modules={[Navigation, EffectFade]}
@@ -60,8 +62,12 @@ function DefaultHome() {
                     ))}
                 </Swiper>
             </div>
-            <div className="mx-auto px-3 lg:max-w-6xl grid lg:grid-cols-4 grid-cols-none">
-                <AnimeSection data={seasonAnime} />
+            <div className="mx-auto px-3 lg:px-0 lg:max-w-6xl grid lg:grid-cols-4 grid-cols-none gap-6">
+                <div className="col-span-3 grid grid-cols-1 gap-10">
+                    <AnimeSection data={seasonAnime} />
+                    <AnimeSection data={seasonAnime} />
+                    <AnimeSection data={seasonAnime} />
+                </div>
                 <AnimeRanking data={rankingAnime} onChangeRank={handleChangeRanking} />
             </div>
         </div>

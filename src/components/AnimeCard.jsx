@@ -1,8 +1,9 @@
 import React from 'react';
 import { AiFillStar } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 function AnimeCard({ anime }) {
     return (
-        <div className="text-center relative cursor-pointer">
+        <Link to={`${anime.mal_id}`} className="block text-center relative cursor-pointer">
             <div>
                 <img
                     src={anime?.images?.jpg?.image_url}
@@ -23,7 +24,7 @@ function AnimeCard({ anime }) {
             >
                 {anime.episodes}
             </span>
-        </div>
+        </Link>
     );
 }
 

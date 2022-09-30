@@ -3,7 +3,7 @@ import AnimeCard from './AnimeCard';
 
 function AnimeSection({ data }) {
     return (
-        <section className="col-span-3 lg:px-4">
+        <section className="">
             <h3 className="header-title text-xl text-white text-center py-2 lg:static lg:w-full">
                 Season
             </h3>

@@ -9,6 +9,14 @@ const animeApi = {
         const url = 'genres/anime';
         return axiosClient.get(url);
     },
+    getRecomendAnime(params) {
+        const url = 'recommendations/anime';
+        return axiosClient.get(url, { params });
+    },
+    getAnimeById(id) {
+        const url = `anime/${id}`;
+        return axiosClient.get(url);
+    },
 };
 
 export default animeApi;
