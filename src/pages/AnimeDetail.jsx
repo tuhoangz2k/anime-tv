@@ -68,7 +68,13 @@ function AnimeDetail(props) {
                                     {useTrunc(anime?.synopsis, 240)}
                                 </p>
                                 <div className="border-t border-[#ffffff33] mt-5">
-                                    <span>{RenderStar(8)}</span>
+                                    <span className="flex text-[#ffc107]">
+                                        <RenderStar rating={anime?.score} size={16} />
+                                    </span>
+                                    <p className="text-white text-[14px]">
+                                        rated {anime?.score ? `${anime.score}` : 'Unknow'} by{' '}
+                                        {anime?.members ? `${anime.members}` : 'Nobody'} viewer
+                                    </p>
                                 </div>
                             </div>
                         </div>

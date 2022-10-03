@@ -8,6 +8,7 @@ import AnimeSection from '../components/AnimeSection';
 import animeApi from '../api/animesApi';
 import seasons from '../api/seasonsApi';
 import AnimeRanking from '../components/AnimeRanking';
+import { Link } from 'react-router-dom';
 function DefaultHome() {
     const [seasonAnime, setSeasonAnime] = useState([]);
     const [rankingAnime, setRankingAnime] = useState([]);
@@ -53,11 +54,13 @@ function DefaultHome() {
                 >
                     {slidesAnime?.map((anime, index) => (
                         <SwiperSlide key={index}>
-                            <img
-                                src={anime?.trailer?.images?.large_image_url}
-                                alt={anime?.title_english}
-                                className="h-full w-full object-cover"
-                            />
+                            <Link className="w-full h-full" to={`${anime.mal_id}`}>
+                                <img
+                                    src={anime?.trailer?.images?.large_image_url}
+                                    alt={anime?.title_english}
+                                    className="h-full w-full object-cover"
+                                />
+                            </Link>
                         </SwiperSlide>
                     ))}
                 </Swiper>
