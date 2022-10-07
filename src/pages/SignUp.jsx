@@ -1,16 +1,23 @@
 import { useState } from 'react';
 import InputField from '../components/InputField';
+import { UserAuth } from '../context/Auth';
 import { AiTwotoneMail, AiFillLock } from 'react-icons/ai';
 
-function Login(props) {
+function SignUp(props) {
+    const { createUser } = UserAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        createUser(email, password);
+    };
+
     return (
         <div className="flex flex-col items-center h-[100%] mt-[30vh] translate-y-[-50%]">
-            <h4 className="text-[34px] text-white font-semibold">Login</h4>
-            <form className="w-[80%] md:w-[60%] lg:w-[400px]">
+            <h4 className="text-[34px] text-white font-semibold">Sign Up</h4>
+            <form onSubmit={handleSubmit}>
                 <InputField
-                    placeholder="Enter your email address"
+                    placeholder="Enter your email"
                     type="email"
                     icon={<AiTwotoneMail size={18} />}
                 />
@@ -23,11 +30,11 @@ function Login(props) {
                     type="submit"
                     className="text-[#333] bg-[#d8d8d8] mt-8 w-full md:w-[150px] md:mx-[50%] md:translate-x-[-50%] h-[45px] rounded-sm font-semibold"
                 >
-                    Login
+                    create
                 </button>
             </form>
         </div>
     );
 }
 
-export default Login;
+export default SignUp;

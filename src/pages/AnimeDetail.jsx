@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaRadiationAlt } from 'react-icons/fa';
 import { BsPlayCircle } from 'react-icons/bs';
+import { AiFillClockCircle, AiFillCalendar, AiFillEye } from 'react-icons/ai';
 
 import useTrunc from '../hooks/useTrunc';
 import animeApi from '../api/animesApi';
@@ -29,9 +30,9 @@ function AnimeDetail(props) {
             <div className="mx-auto lg:max-w-6xl grid grid-cols-1 lg:grid-cols-4">
                 <div className="col-span-3">
                     <header className="relative h-[840px] lg:h-auto p-4">
-                        <div className="flex flex-col relative z-10">
-                            <h4 className="md:hidden text-3xl text-greensSecondary font-bold text-center mb-[20px]">
-                                {anime?.title_english}
+                        <div className="flex flex-col relative z-5">
+                            <h4 className="md:hidden text-3xl text-greensSecondary font-bold mb-[20px]">
+                                {anime?.title_english || anime?.title}
                             </h4>
                             <p className="md:hidden text-white font-[500] text-[16px] mb-[20px]">
                                 {anime?.background ||
@@ -43,7 +44,7 @@ function AnimeDetail(props) {
                                     alt=""
                                     className="inline-block w-[180px] h-[260px] object-cover object-center"
                                 />
-                                <span className="absolute top-2 left-2 bg-[#00000090] text-white p-2 cursor rounded-md flex items-center">
+                                <span className="absolute top-2 left-2 text-[14px] bg-[#00000090] text-white p-2 cursor rounded-md flex items-center">
                                     <FaRadiationAlt />
                                     <span className="ml-1">Folowing</span>
                                 </span>
@@ -68,13 +69,27 @@ function AnimeDetail(props) {
                                     {useTrunc(anime?.synopsis, 240)}
                                 </p>
                                 <div className="border-t border-[#ffffff33] mt-5">
-                                    <span className="flex text-[#ffc107]">
+                                    <span className="flex text-[#ffc107] mt-2">
                                         <RenderStar rating={anime?.score} size={16} />
                                     </span>
-                                    <p className="text-white text-[14px]">
+                                    <p className="text-white mt-1 text-[13px]">
                                         rated {anime?.score ? `${anime.score}` : 'Unknow'} by{' '}
                                         {anime?.members ? `${anime.members}` : 'Nobody'} viewer
                                     </p>
+                                    <div className="flex gap-4 text-[14px]">
+                                        <span className="flex gap-2 items-center">
+                                            <AiFillClockCircle size={16} />
+                                            {anime?.episodes || 'unkown'}
+                                        </span>
+                                        <span className="flex gap-2 items-center">
+                                            <AiFillCalendar size={16} />
+                                            {anime?.year || 'unkown'}
+                                        </span>
+                                        <span className="flex gap-2 items-center">
+                                            <AiFillEye size={16} />
+                                            {anime?.members || 'unkown'} views
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Button({ to, className, href, text, children }) {
+function Button({ to, onClick, className, href, text, children }) {
     let Comp = 'button';
     if (to) {
         Comp = Link;
@@ -9,7 +9,7 @@ function Button({ to, className, href, text, children }) {
         Comp = 'a';
     }
     return (
-        <Comp to={to} href={href} className={`${className}`}>
+        <Comp to={to} href={href} onClick={onClick} className={`${className}`}>
             {children}
         </Comp>
     );

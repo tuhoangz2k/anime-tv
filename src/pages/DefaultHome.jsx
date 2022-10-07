@@ -14,7 +14,6 @@ function DefaultHome() {
     const [rankingAnime, setRankingAnime] = useState([]);
     const [filter, setFilter] = useState({ type: 'tv', limit: 10 });
     const slidesAnime = [...seasonAnime].slice(0, 10);
-    console.log(seasonAnime);
     useEffect(() => {
         (async () => {
             try {
@@ -22,6 +21,10 @@ function DefaultHome() {
                 setSeasonAnime(res.data.data);
             } catch (error) {
                 console.log(error);
+                setTimeout(async () => {
+                    const res = await seasons.getSeasonNow({ limit: 60 });
+                    setSeasonAnime(res.data.data);
+                }, 500);
             }
         })();
     }, []);
@@ -33,6 +36,10 @@ function DefaultHome() {
                 setRankingAnime(res.data.data);
             } catch (error) {
                 console.log(error);
+                setTimeout(async () => {
+                    const res = await animeApi.getTop({ limit: 60 });
+                    setRankingAnime(res.data.data);
+                }, 500);
             }
         })();
     }, [filter]);

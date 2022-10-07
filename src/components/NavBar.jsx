@@ -13,7 +13,9 @@ function NavBar({ isMobile, onShowNav, showNav }) {
             onShowNav((prev) => !prev);
         }
     };
-
+    const closeNav = () => {
+        onShowNav((prev) => !prev);
+    };
     useEffect(() => {
         const getGenres = async () => {
             try {
@@ -46,10 +48,11 @@ function NavBar({ isMobile, onShowNav, showNav }) {
                     <nav
                         className={`absolute ${
                             showNav ? 'left-0 opacity-100' : 'left-[-100%] opacity-0'
-                        } transition-all top-0 bottom-0 w-[290px] bg-[#263238] opacity-90 overflow-y-scroll z-10`}
+                        } transition-all top-0 bottom-0 w-[290px] bg-[#263238] opacity-90 overflow-y-scroll z-[10]`}
                     >
                         <div className="py-4 px-2 bg-[#090b0c] mt-4 w-[90%] mx-auto relative opacity-100">
                             <Button
+                                onClick={closeNav}
                                 to="/login"
                                 className="bg-primary w-[200px]  rounded-sm text-white flex items-center justify-center mx-auto h-[40px]"
                             >
