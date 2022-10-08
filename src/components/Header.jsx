@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import { AiOutlineMenu, AiOutlineSearch, AiOutlineClose } from 'react-icons/ai';
 import Logo from '../assets/img/logoz.png';
 import NavBar from './NavBar';
-
 function Header(props) {
     const [showNav, setShowNav] = useState(false);
+
     const handleShowNav = () => {
         setShowNav(!showNav);
     };
-
     const [windowSize, setWindowSize] = useState({
         width: undefined,
         height: undefined,
@@ -65,6 +64,7 @@ function Header(props) {
                         />
                     )}
                 </div>
+
                 <NavBar isMobile={isMobile} showNav={showNav} onShowNav={setShowNav} />
             </div>
         </header>
