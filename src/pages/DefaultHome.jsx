@@ -24,7 +24,7 @@ function DefaultHome() {
                 setTimeout(async () => {
                     const res = await seasons.getSeasonNow({ limit: 60 });
                     setSeasonAnime(res.data.data);
-                }, 500);
+                }, 1000);
             }
         })();
     }, []);
@@ -39,7 +39,7 @@ function DefaultHome() {
                 setTimeout(async () => {
                     const res = await animeApi.getTop({ limit: 60 });
                     setRankingAnime(res.data.data);
-                }, 500);
+                }, 1000);
             }
         })();
     }, [filter]);
