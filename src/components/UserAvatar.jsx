@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BiChevronDown, BiLogOut } from 'react-icons/bi';
 import { FaUserAlt } from 'react-icons/fa';
@@ -26,7 +26,7 @@ function UserAvatar() {
                 />
             </div>
             <BiChevronDown size={22} className="text-white" />
-            <ul className="group-hover:visible invisible transition-all duration-300 absolute w-[200px] left-[-80px] top-[110%] bg-[#284048] cursor-pointer rounded-md">
+            <ul className="group-hover:visible invisible transition-all duration-300 absolute w-[200px] left-[-80px] top-[110%] bg-[#284048] z-10 cursor-pointer rounded-md">
                 <li className="p-2 font-[500] flex items-center gap-2 hover:bg-[#78909c] hover:text-white">
                     <FaUserAlt /> Info
                 </li>
@@ -44,4 +44,4 @@ function UserAvatar() {
     );
 }
 
-export default UserAvatar;
+export default memo(UserAvatar);

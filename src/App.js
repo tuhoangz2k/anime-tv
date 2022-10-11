@@ -7,22 +7,26 @@ import Header from './components/Header';
 import { AuthContextProvider } from './context/Auth';
 import './App.css';
 import SignUp from './pages/SignUp';
+import { UserAuth } from './context/Auth';
 
 function App() {
+    const { user } = UserAuth();
+
     return (
         <>
-            <AuthContextProvider>
-                <Header />
-                <Routes>
-                    <Route element={<Navigate to="/anime" replace={true} />} path="/" />
-                    <Route element={<Home />} path={'/anime'}>
-                        <Route element={<DefaultHome />} index />
-                        <Route element={<AnimeDetail />} path={':aniID'} />
-                    </Route>
-                    <Route element={<Login />} path={'/login'} />
-                    <Route element={<SignUp />} path={'/signup'} />
-                </Routes>
-            </AuthContextProvider>
+            <Header />
+            <Routes>
+                <Route element={<Navigate to="/anime" replace={true} />} path="/" />
+                <Route element={<Home />} path={'/anime'}>
+                    <Route element={<DefaultHome />} index />
+                    <Route element={<AnimeDetail />} path={':aniID'} />
+                </Route>
+                <Route element={user?.uid ? <Navigate to="/anime" /> : <Login />} path={'/login'} />
+                <Route
+                    element={user?.uid ? <Navigate to="/anime" /> : <SignUp />}
+                    path={'/signup'}
+                />
+            </Routes>
         </>
     );
 }

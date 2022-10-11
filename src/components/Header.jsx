@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineMenu, AiOutlineSearch, AiOutlineClose } from 'react-icons/ai';
 import Logo from '../assets/img/logoz.png';
@@ -71,4 +71,4 @@ function Header(props) {
     );
 }
 
-export default Header;
+export default memo(Header);
