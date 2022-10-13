@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlineMenu, AiOutlineSearch, AiOutlineClose } from 'react-icons/ai';
 import Logo from '../assets/img/logoz.png';
 import NavBar from './NavBar';
+import SearchInput from './SearchInput';
 function Header(props) {
     const [showNav, setShowNav] = useState(false);
 
@@ -41,16 +42,8 @@ function Header(props) {
                 <Link to="/" className="h-full">
                     <img src={Logo} alt="" className="h-full" />
                 </Link>
-                <div className="bg-[#00000099] h-[40px] flex border-[#263238] rounded-sm border-2">
-                    <button className="px-4 w-[44px]">
-                        <AiOutlineSearch className=" w-[16px] text-" />
-                    </button>
-                    <input
-                        type="text"
-                        className=" h-full flex-1 bg-transparent  outline-0 text-white"
-                        placeholder="Search"
-                    />
-                </div>
+
+                <SearchInput />
                 <div onClick={handleShowNav} className="relative z-10">
                     {showNav ? (
                         <AiOutlineClose

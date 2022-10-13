@@ -17,6 +17,10 @@ const animeApi = {
         const url = `anime/${id}`;
         return axiosClient.get(url);
     },
+    getAnimeByFilter(params) {
+        const url = 'anime';
+        return axiosClient.get(url, { params });
+    },
 };
 
 export default animeApi;

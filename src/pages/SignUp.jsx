@@ -34,11 +34,10 @@ function SignUp(props) {
     });
     const navigate = useNavigate();
     const { createUser, user } = UserAuth();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+
     const handleSubmitForm = async (data) => {
         try {
-            await createUser(email, password);
+            await createUser(data.email, data.password);
             navigate('/');
         } catch (error) {
             console.log(error);
@@ -60,12 +59,10 @@ function SignUp(props) {
                         className="w-[80%] md:w-[60%] lg:w-[400px] mx-auto"
                     >
                         <InputField
-                            placeholder="Enter your email"
+                            placeholder="Enter your email address"
                             type="email"
                             icon={<AiTwotoneMail size={18} />}
                             register={register}
-                            state={email}
-                            setState={setEmail}
                             errors={errors.email}
                             name="email"
                             control={control}
@@ -76,10 +73,7 @@ function SignUp(props) {
                             icon={<AiFillLock size={18} />}
                             register={register}
                             name="password"
-                            state={password}
-                            setState={setPassword}
                             errors={errors.password}
-                            control={control}
                         />
                         <button
                             type="submit"

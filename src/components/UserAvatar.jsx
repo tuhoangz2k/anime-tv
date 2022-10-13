@@ -26,7 +26,7 @@ function UserAvatar() {
                 />
             </div>
             <BiChevronDown size={22} className="text-white" />
-            <ul className="group-hover:visible invisible transition-all duration-300 absolute w-[200px] left-[-80px] top-[110%] bg-[#284048] z-10 cursor-pointer rounded-md">
+            <ul className="group-hover:visible invisible transition-all duration-300 absolute w-[200px] left-[-80px] top-[110%] lg:left-auto lg:right-[-10px] bg-[#284048] z-10 cursor-pointer rounded-md">
                 <li className="p-2 font-[500] flex items-center gap-2 hover:bg-[#78909c] hover:text-white">
                     <FaUserAlt /> Info
                 </li>

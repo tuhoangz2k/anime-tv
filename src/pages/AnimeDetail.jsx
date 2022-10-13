@@ -61,7 +61,7 @@ function AnimeDetail(props) {
     }, [filter, windowSize]);
 
     const handlePlayVideo = (e) => {
-        console.log(videoRef.current?.onplay());
+        videoRef.current?.requestFullscreen();
     };
 
     console.log(anime);
@@ -148,9 +148,13 @@ function AnimeDetail(props) {
                             height="500 "
                             // src={anime?.trailer?.embed_url}
                             ref={videoRef}
-                            title="video"
+                            title={anime?.title_english || anime?.title}
                             sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-presentation"
-                            src={`https://youtube.com/embed/${anime?.trailer?.youtube_id}?autoplay=0`}
+                            src={anime?.trailer?.embed_url}
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading={'lazy'}
                         ></iframe>
                     </div>
                 </div>

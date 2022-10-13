@@ -16,4 +16,10 @@
         width: calc(100% + 1.5rem);
         @apply relative left-[-0.75rem] z-[1] mb-8 top-0;
     }
+    .truncate-line-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 }
