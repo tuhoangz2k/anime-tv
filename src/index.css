@@ -22,4 +22,10 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
+    .visibility-list {
+        visibility: hidden;
+    }
+    input:focus ~ .visibility-list {
+        visibility: visible;
+    }
 }

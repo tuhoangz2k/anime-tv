@@ -1,16 +1,28 @@
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import defaultAvatar from '../assets/img/defaultAvatar.jpg';
-function CardSearch(props) {
+function CardSearch({ card, setShow, setInput }) {
+    const navigate = useNavigate();
+    const handlevigate = (e) => {
+        if (!setShow) return;
+        setShow(false);
+        setInput('');
+        navigate(`/anime/${card?.mal_id}`);
+    };
     return (
-        <li className="flex h-[80px] gap-4 cursor-pointer p-4">
+        <li className="flex gap-4 cursor-pointer p-4 group" onClick={handlevigate}>
             <div className="w-[50px] h-[70px]">
-                <img src={defaultAvatar} alt="" className="w-full h-full object-cover" />
+                <img
+                    src={card?.images?.jpg?.image_url || defaultAvatar}
+                    alt=""
+                    className="group-hover:opacity-60 w-full h-full object-cover"
+                />
             </div>
-            <div className="flex-1">
+            <div className="flex-1 group-hover:text-white">
                 <h5 className="font-semibold truncate-line-2 text-[14px]">
-                    Cong chua re rach Cong chua re rach Cong chua re rach
+                    {card?.title_english || card?.title}
                 </h5>
-                <p className="font-[500] text-[12px]">tap 2</p>
+                <p className="font-[500] text-[12px]">episodes {card?.episodes || '?'}</p>
             </div>
         </li>
     );

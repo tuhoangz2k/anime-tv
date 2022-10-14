@@ -7,6 +7,7 @@ function SearchInput(props) {
     const [inputValue, setInputValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const debouncedValue = useDebounce(inputValue, 400);
+    const [showSearch, setShowSearch] = useState(false);
     const handleChangeInputSearch = (e) => {
         const value = e.target.value;
         if (value[0] === ' ') return;
@@ -16,10 +17,19 @@ function SearchInput(props) {
         inputValue &&
             (async () => {
                 const data = await animeApi.getAnimeByFilter({ q: debouncedValue, limit: 5 });
-                setSearchResult(data.data);
+                setSearchResult(data.data.data);
+                if (data.data.data.length > 0) {
+                    setShowSearch(true);
+                } else {
+                    setShowSearch(false);
+                }
             })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debouncedValue]);
+    useEffect(() => {
+        if (inputValue === '') setShowSearch(false);
+    }, [inputValue]);
+    console.log(searchResult);
 
     return (
         <div className="bg-[#00000099] h-[40px] flex border-[#263238] rounded-sm border-2 relative">
@@ -28,14 +38,31 @@ function SearchInput(props) {
             </button>
             <input
                 type="text"
-                className=" h-full flex-1 bg-transparent  outline-0 text-white"
+                className=" h-full flex-1 bg-transparent  outline-0 text-white group"
                 placeholder="Search"
                 value={inputValue}
                 onChange={handleChangeInputSearch}
             />
-            <ul className="absolute left-0 right-0 bg-[#214354] h-[500px] z-[10] top-full">
-                <CardSearch />
-            </ul>
+            {showSearch && (
+                <ul
+                    className="absolute left-0 right-0 bg-[#214354] z-[12] top-full max-w-[510px] visibility-list 
+               transition-all"
+                >
+                    {searchResult?.slice(0, 5).map((card, idx) => (
+                        <CardSearch
+                            key={card.mal_id}
+                            card={card}
+                            setShow={setShowSearch}
+                            setInput={setInputValue}
+                        />
+                    ))}
+                    <li className="">
+                        <button className="block w-full h-full p-2 text-white bg-[#f44336]">
+                            Enter to search
+                        </button>
+                    </li>
+                </ul>
+            )}
         </div>
     );
 }
