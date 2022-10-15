@@ -1,6 +1,6 @@
 import axiosClient from './axiosClient';
 
-const animeApi = {
+const seasonsApi = {
     getSeasonList(params) {
         const url = 'seasons';
         return axiosClient.get(url, { params });
@@ -19,4 +19,4 @@ const animeApi = {
     },
 };
 
-export default animeApi;
+export default seasonsApi;

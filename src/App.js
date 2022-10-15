@@ -8,6 +8,7 @@ import { AuthContextProvider } from './context/Auth';
 import './App.css';
 import SignUp from './pages/SignUp';
 import { UserAuth } from './context/Auth';
+import SeasonPage from './pages/SeasonPage';
 
 function App() {
     const { user } = UserAuth();
@@ -26,6 +27,7 @@ function App() {
                     element={user?.uid ? <Navigate to="/anime" /> : <SignUp />}
                     path={'/signup'}
                 />
+                <Route element={<SeasonPage />} path={'/seasons/:year/:season'} />
             </Routes>
         </>
     );
