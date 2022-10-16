@@ -151,9 +151,9 @@ function AnimeDetail(props) {
                             title={anime?.title_english || anime?.title}
                             sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-presentation"
                             src={anime?.trailer?.embed_url}
-                            frameborder="0"
+                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
+                            allowFullScreen
                             loading={'lazy'}
                         ></iframe>
                     </div>
