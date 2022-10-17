@@ -11,9 +11,9 @@ function NavBarItem({ to, data, text }) {
                         <BiChevronDown size={30} className="lg:mr-0 mr-8 text-green-500" />
                     </div>
                     <ul
-                        className="flex-wrap hidden group-hover:flex lg:absolute lg:top-full lg:right-0 lg:w-[300px] 
+                        className="flex-wrap hidden group-hover:flex lg:absolute lg:top-full lg:left-[-60px] lg:w-[300px] 
                     lg:scrollbar-hide lg:h-[500px] lg:overflow-y-scroll lg:bg-white lg:border-t-[4px] lg:border-[#b5e745]
-                    before:content-[''] absolute top-full left-0 z-10 w-full right-0
+                    before:content-[''] absolute top-full left-0 z-[12] w-full right-0
                     "
                     >
                         {data?.map((item, index) => (

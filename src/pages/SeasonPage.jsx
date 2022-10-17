@@ -8,13 +8,14 @@ function SeasonPage(props) {
     const [animeList, setAnimeList] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
+    const [pagination, setPagination] = useState({});
     const queryparams = useMemo(() => {
         return queryString.parse(location.search);
     }, [location.search]);
 
     const [filter, setFilter] = useState(() => ({
         ...queryparams,
-        limit: Number.parseInt(queryparams?.limit) || 30,
+        limit: Number.parseInt(queryparams?.limit) || 20,
         page: Number.parseInt(queryparams?.page) || 1,
     }));
     useEffect(() => {
@@ -29,21 +30,27 @@ function SeasonPage(props) {
                 if (param.year && param.season) {
                     const res = await seasonsApi.getSeason(param, filter);
                     setAnimeList(res.data.data);
+                    setPagination(res.data.pagination);
                 }
             } catch (error) {
                 console.log(error);
                 setTimeout(async () => {
                     const res = await seasonsApi.getSeason(param, filter);
                     setAnimeList(res.data.data);
+                    setPagination(res.data.pagination);
                 }, 1000);
             }
         };
 
         fetchAnime();
     }, [param, filter]);
+    const onPageChange = (newPage) => {
+        setFilter({ ...filter, page: newPage });
+    };
+    console.log(pagination);
     return (
         <>
-            <Content animeList={animeList} />
+            <Content animeList={animeList} pagination={pagination} onPageChange={onPageChange} />
         </>
     );
 }
