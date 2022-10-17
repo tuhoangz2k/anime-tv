@@ -9,6 +9,7 @@ import './App.css';
 import SignUp from './pages/SignUp';
 import { UserAuth } from './context/Auth';
 import SeasonPage from './pages/SeasonPage';
+import AnimeListGere from './pages/AnimeListGere';
 
 function App() {
     const { user } = UserAuth();
@@ -28,6 +29,7 @@ function App() {
                     path={'/signup'}
                 />
                 <Route element={<SeasonPage />} path={'/seasons/:year/:season'} />
+                <Route element={<AnimeListGere />} path={'/geres/:id'} />
             </Routes>
         </>
     );

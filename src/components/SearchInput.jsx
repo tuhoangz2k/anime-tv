@@ -3,11 +3,13 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import useDebounce from '../hooks/useDebounce';
 import animeApi from '../api/animesApi';
 import CardSearch from './CardSearch';
+import { Link } from 'react-router-dom';
 function SearchInput(props) {
     const [inputValue, setInputValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const debouncedValue = useDebounce(inputValue, 400);
     const [showSearch, setShowSearch] = useState(false);
+    const [isFocus, setIsFocus] = useState(false);
     const handleChangeInputSearch = (e) => {
         const value = e.target.value;
         if (value[0] === ' ') return;
@@ -42,11 +44,17 @@ function SearchInput(props) {
                 placeholder="Search"
                 value={inputValue}
                 onChange={handleChangeInputSearch}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => {
+                    setTimeout(() => {
+                        setIsFocus(false);
+                    }, 100);
+                }}
             />
             {showSearch && (
                 <ul
-                    className="absolute left-0 right-0 bg-[#214354] z-[12] top-full max-w-[510px] visibility-list 
-               transition-all"
+                    className={`absolute left-0 right-0 bg-[#214354] z-[12] top-full max-w-[510px] 
+               transition-all ${isFocus ? 'visible' : 'invisible'}`}
                 >
                     {searchResult?.slice(0, 5).map((card, idx) => (
                         <CardSearch
@@ -54,6 +62,7 @@ function SearchInput(props) {
                             card={card}
                             setShow={setShowSearch}
                             setInput={setInputValue}
+                            setSearchResult={setSearchResult}
                         />
                     ))}
                     <li className="">

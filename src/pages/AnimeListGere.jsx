@@ -2,8 +2,8 @@ import { useEffect, useState, useMemo } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
 import Content from '../components/Content';
-import seasonsApi from '../api/seasonsApi';
-function SeasonPage(props) {
+import animeApi from '../api/animesApi';
+function AnimeListGere(props) {
     const param = useParams();
     const [animeList, setAnimeList] = useState([]);
     const navigate = useNavigate();
@@ -17,7 +17,9 @@ function SeasonPage(props) {
         ...queryparams,
         limit: Number.parseInt(queryparams?.limit) || 20,
         page: Number.parseInt(queryparams?.page) || 1,
+        genres: param.id,
     }));
+    console.log(param.id);
     useEffect(() => {
         navigate({
             pathname: location.pathname,
@@ -25,17 +27,20 @@ function SeasonPage(props) {
         });
     }, [filter]);
     useEffect(() => {
+        console.log('oop1');
         const fetchAnime = async () => {
             try {
-                if (param.year && param.season) {
-                    const res = await seasonsApi.getSeason(param, filter);
+                if (param.id) {
+                    const res = await animeApi.getAnimeByFilter(filter);
+                    console.log('helo');
                     setAnimeList(res.data.data);
                     setPagination(res.data.pagination);
                 }
             } catch (error) {
                 console.log(error);
+                console.log('oop');
                 setTimeout(async () => {
-                    const res = await seasonsApi.getSeason(param, filter);
+                    const res = await animeApi.getAnimeByFilter(filter);
                     setAnimeList(res.data.data);
                     setPagination(res.data.pagination);
                 }, 1000);
@@ -54,4 +59,4 @@ function SeasonPage(props) {
     );
 }
 
-export default SeasonPage;
+export default AnimeListGere;

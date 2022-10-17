@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 function Pagination({ pagination, onPageChange }) {
-    console.log(onPageChange);
     const handlePaginationChange = (newPage) => {
         if (onPageChange) onPageChange(newPage);
     };

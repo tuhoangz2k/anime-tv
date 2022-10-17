@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import defaultAvatar from '../assets/img/defaultAvatar.jpg';
-function CardSearch({ card, setShow, setInput }) {
+function CardSearch({ card, setShow, setInput, setSearchResult }) {
     const navigate = useNavigate();
     const handlevigate = (e) => {
+        console.log(setShow);
         if (!setShow) return;
         setShow(false);
         setInput('');
+        setSearchResult([]);
         navigate(`/anime/${card?.mal_id}`);
     };
     return (
