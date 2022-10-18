@@ -1,7 +1,7 @@
 import { useState, memo } from 'react';
 import { AiTwotoneMail, AiFillLock } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputField from '../components/InputField';
 import * as yup from 'yup';
@@ -40,6 +40,7 @@ function Login(props) {
         } catch (error) {
             console.log(error);
             setError('email', { type: 'focus', errors: error.message });
+            setError('password', { type: 'focus', errors: error.message });
         }
     };
     if (!user?.uid) {
@@ -82,6 +83,15 @@ function Login(props) {
                             </button>
                         </form>
                     </div>
+                    <p className="relative z-[11] mt-4 text-shadow-white font-[500]  text-white">
+                        Do you have a account?{' '}
+                        <Link
+                            to="/signup"
+                            className="text-red-500 text-shadow-white font-semibold cursor-pointer"
+                        >
+                            Sign Up Now!
+                        </Link>
+                    </p>
                 </div>
             </>
         );

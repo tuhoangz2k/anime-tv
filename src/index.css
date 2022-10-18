@@ -28,4 +28,7 @@
     input:focus ~ .visibility-list {
         visibility: visible;
     }
+    .text-shadow-white {
+        text-shadow: 5px 5px 4px black;
+    }
 }

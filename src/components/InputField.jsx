@@ -13,7 +13,11 @@ function InputField({ icon, type = 'type', placeholder, register, name, errors }
                     {...register(name)}
                 />
             </div>
-            {errors && <p className="text-[#df2b4f] mt-2 font-[500]">{errors.message}</p>}
+            {errors && (
+                <p className="text-[#df2b4f] mt-2 font-[500] text-shadow-white">
+                    {errors.message || errors.errors}
+                </p>
+            )}
         </div>
     );
 }

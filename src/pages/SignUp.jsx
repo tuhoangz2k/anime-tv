@@ -4,7 +4,7 @@ import { UserAuth } from '../context/Auth';
 import { AiTwotoneMail, AiFillLock } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, Navigate, Link } from 'react-router-dom';
 import * as yup from 'yup';
 import ramRem from '../assets/img/ramRem.png';
 
@@ -40,8 +40,10 @@ function SignUp(props) {
             await createUser(data.email, data.password);
             navigate('/');
         } catch (error) {
-            console.log(error);
+            console.log(error.message);
             setError(error);
+            setError('email', { type: 'custom', message: error });
+            setError('password', { type: 'custom', message: error });
         }
     };
     if (user?.uid) {
@@ -85,6 +87,15 @@ function SignUp(props) {
                         </button>
                     </form>
                 </div>
+                <p className="relative z-[11] mt-4 text-shadow-white font-[500]  text-white">
+                    You have a account?{' '}
+                    <Link
+                        to="/login"
+                        className="text-red-500 text-shadow-white font-semibold cursor-pointer"
+                    >
+                        Login Now!
+                    </Link>
+                </p>
             </div>
         );
     }
