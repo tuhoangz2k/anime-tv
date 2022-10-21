@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp';
 import { UserAuth } from './context/Auth';
 import SeasonPage from './pages/SeasonPage';
 import AnimeListGere from './pages/AnimeListGere';
+import SeasonNow from './pages/SeasonNow';
 
 function App() {
     const { user } = UserAuth();
@@ -28,6 +29,7 @@ function App() {
                     element={user?.uid ? <Navigate to="/anime" /> : <SignUp />}
                     path={'/signup'}
                 />
+                <Route element={<SeasonNow />} path={'/seasons/now'} />
                 <Route element={<SeasonPage />} path={'/seasons/:year/:season'} />
                 <Route element={<AnimeListGere />} path={'/geres/:id'} />
             </Routes>

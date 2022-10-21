@@ -2,9 +2,8 @@ import { useEffect, useState, useMemo } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
 import Content from '../components/Content';
-import animeApi from '../api/animesApi';
-function AnimeListGere(props) {
-    const param = useParams();
+import seasonsApi from '../api/seasonsApi';
+function SeasonPage(props) {
     const [animeList, setAnimeList] = useState([]);
     const navigate = useNavigate();
     const location = useLocation();
@@ -17,29 +16,24 @@ function AnimeListGere(props) {
         ...queryparams,
         limit: Number.parseInt(queryparams?.limit) || 20,
         page: Number.parseInt(queryparams?.page) || 1,
-        genres: param.id,
     }));
-    console.log(param.id);
     useEffect(() => {
         navigate({
             pathname: location.pathname,
             search: queryString.stringify(filter),
         });
     }, [filter]);
+    console.log('wibu');
     useEffect(() => {
         const fetchAnime = async () => {
             try {
-                if (param.id) {
-                    const res = await animeApi.getAnimeByFilter(filter);
-                    console.log('helo');
-                    setAnimeList(res.data.data);
-                    setPagination(res.data.pagination);
-                }
+                const res = await seasonsApi.getSeasonNow(filter);
+                setAnimeList(res.data.data);
+                setPagination(res.data.pagination);
             } catch (error) {
                 console.log(error);
-                console.log('oop');
                 setTimeout(async () => {
-                    const res = await animeApi.getAnimeByFilter(filter);
+                    const res = await seasonsApi.getSeasonNow(filter);
                     setAnimeList(res.data.data);
                     setPagination(res.data.pagination);
                 }, 1000);
@@ -47,7 +41,7 @@ function AnimeListGere(props) {
         };
 
         fetchAnime();
-    }, [param, filter]);
+    }, [filter]);
     const onPageChange = (newPage) => {
         setFilter({ ...filter, page: newPage });
     };
@@ -58,4 +52,4 @@ function AnimeListGere(props) {
     );
 }
 
-export default AnimeListGere;
+export default SeasonPage;
